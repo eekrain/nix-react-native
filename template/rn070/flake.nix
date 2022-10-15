@@ -92,7 +92,7 @@
               prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${pkgs.android-sdk}/share/android-sdk/build-tools/${android.defaultBuildToolsVersion}/aapt2";
             }
           ];
-          packages = [
+          packages = with pkgs; [
             # Uncomment these if u decided to want to install android-studio
             # android-studio
             android-sdk

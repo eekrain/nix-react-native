@@ -1,7 +1,9 @@
-{ self, ... }@inputs:
 {
-  templates.default = {
-    path = ./template;
-    description = "Android application or library";
+  description = "nix-react-native";
+  outputs = {
+    templates.default = {
+      path = ./template;
+      description = "React Native environment for nix";
+    };
   };
 }

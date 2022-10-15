@@ -8,7 +8,7 @@
     android.url = "github:tadfisher/android-nixpkgs";
   };
 
-  outputs = { self, nixpkgs, devshell, flake-utils, android, config }:
+  outputs = { self, nixpkgs, devshell, flake-utils, android }:
     {
       overlay = final: prev: {
         # If u need android studio set up, u should add android-studio to overlay below like:
@@ -30,12 +30,6 @@
 
       in
       {
-        config.android = {
-          defaultBuildToolsVersion = "31.0.0";
-          # Same as above but following naming convention of channels in github:tadfisher/android-nixpkgs with XML
-          defaultBuildToolsXML = "build-tools-31-0-0";
-        };
-
         packages = {
           android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
             # Useful packages for building and testing.
@@ -62,7 +56,7 @@
           # android-studio = pkgs.androidStudioPackages.preview;
           # android-studio = pkgs.androidStudioPackage.canary;
         };
-        devShell = import ./devshell.nix { inherit pkgs config; };
+        devShell = import ./devshell.nix { inherit pkgs; };
       }
     );
 }

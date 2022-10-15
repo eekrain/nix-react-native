@@ -1,4 +1,4 @@
-{ pkgs, config }:
+{ pkgs }:
 
 with pkgs;
 
@@ -39,7 +39,7 @@ devshell.mkShell {
     }
     {
       name = "GRADLE_OPTS";
-      prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/${config.android.defaultBuildToolsVersion}/aapt2";
+      prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/${android.defaultBuildToolsVersion}/aapt2";
     }
   ];
   packages = [

@@ -22,6 +22,10 @@ devshell.mkShell {
       value = jdk11.home;
     }
     {
+      name = "GRADLE_OPTS";
+      value = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/${androidConfig.defaultBuildToolsVersion}/aapt2";
+    }
+    {
       name = "ANDROID_HOME";
       value = "${android-sdk}/share/android-sdk";
     }
@@ -36,10 +40,6 @@ devshell.mkShell {
     {
       name = "PATH";
       prefix = "${android-sdk}/share/android-sdk/platform-tools";
-    }
-    {
-      name = "GRADLE_OPTS";
-      prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/${androidConfig.defaultBuildToolsVersion}/aapt2";
     }
   ];
   packages = [

@@ -69,7 +69,7 @@
           env = [
             {
               name = "JAVA_HOME";
-              value = jdk11.home;
+              value = pkgs.jdk11.home;
             }
             {
               name = "ANDROID_HOME";

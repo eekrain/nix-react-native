@@ -30,15 +30,14 @@
 
         androidConfig = {
           defaultBuildToolsVersion = "31.0.0";
-          # Same as above but following naming convention of channels in github:tadfisher/android-nixpkgs with XML
-          defaultBuildToolsXML = android.sdk.${system} (sdkPkgs: [ sdkPkgs.build-tools-31-0-0 ]);
         };
       in
       {
         packages = {
           android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
             # Useful packages for building and testing.
-            # The default build tools for react native 0.70
+            # make sure to add defaultBuildToolsVersion
+            build-tools-31-0-0
             # If when building the apps needs to add other version of build tools, u can add it too
             build-tools-30-0-3
             cmdline-tools-latest
@@ -46,7 +45,6 @@
             platform-tools
             platforms-android-31
             patcher-v4
-            androidConfig.defaultBuildToolsXML
 
             # Other useful packages for a development environment.
             # sources-android-30

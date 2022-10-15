@@ -10,6 +10,12 @@ devshell.mkShell {
   motd = ''
     Entered the Android app development environment.
   '';
+  startup.check_gitignore = ''
+    if ! grep -q ".direnv" ./.gitignore; then
+      echo "adding .direnv dir to gitignore"
+      echo -e "\n\n#direnv\n.direnv" >> ./.gitignore
+    fi
+  '';
   env = [
     {
       name = "JAVA_HOME";

@@ -28,6 +28,11 @@
           ];
         };
 
+        androidConfig = {
+          defaultBuildToolsVersion = "31.0.0";
+          # Same as above but following naming convention of channels in github:tadfisher/android-nixpkgs with XML
+          defaultBuildToolsXML = "build-tools-31-0-0";
+        };
       in
       {
         packages = {

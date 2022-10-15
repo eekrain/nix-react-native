@@ -38,15 +38,15 @@
         packages = {
           android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
             # Useful packages for building and testing.
-            patcher-v4
             # The default build tools for react native 0.70
             # If when building the apps needs to add other version of build tools, u can add it too
-            androidConfig.defaultBuildToolsXML
             build-tools-30-0-3
             cmdline-tools-latest
             emulator
             platform-tools
             platforms-android-31
+            patcher-v4
+            androidConfig.defaultBuildToolsXML
 
             # Other useful packages for a development environment.
             # sources-android-30

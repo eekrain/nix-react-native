@@ -31,7 +31,7 @@
         androidConfig = {
           defaultBuildToolsVersion = "31.0.0";
           # Same as above but following naming convention of channels in github:tadfisher/android-nixpkgs with XML
-          defaultBuildToolsXML = android.sdk.${system} (sdkPkgs: sdkPkgs.build-tools-31-0-0);
+          defaultBuildToolsXML = android.sdk.${system} (sdkPkgs: [ sdkPkgs.build-tools-31-0-0 ]);
         };
       in
       {

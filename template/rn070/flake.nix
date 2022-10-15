@@ -8,7 +8,7 @@
     android.url = "github:tadfisher/android-nixpkgs";
   };
 
-  outputs = { self, nixpkgs, devshell, flake-utils, android }:
+  outputs = { self, nixpkgs, devshell, flake-utils, android, config }:
     {
       overlay = final: prev: {
         # If u need android studio set up, u should add android-studio to overlay below like:
@@ -28,13 +28,14 @@
           ];
         };
 
-        android = {
+      in
+      {
+        config.android = {
           defaultBuildToolsVersion = "31.0.0";
           # Same as above but following naming convention of channels in github:tadfisher/android-nixpkgs with XML
           defaultBuildToolsXML = "build-tools-31-0-0";
         };
-      in
-      {
+
         packages = {
           android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
             # Useful packages for building and testing.
@@ -61,45 +62,7 @@
           # android-studio = pkgs.androidStudioPackages.preview;
           # android-studio = pkgs.androidStudioPackage.canary;
         };
-        devShell = pkgs.devshell.mkShell {
-          name = "android-project";
-          motd = ''
-            Entered the Android app development environment.
-          '';
-          env = [
-            {
-              name = "JAVA_HOME";
-              value = pkgs.jdk11.home;
-            }
-            {
-              name = "ANDROID_HOME";
-              value = "${pkgs.android-sdk}/share/android-sdk";
-            }
-            {
-              name = "ANDROID_SDK_ROOT";
-              value = "${pkgs.android-sdk}/share/android-sdk";
-            }
-            {
-              name = "PATH";
-              prefix = "${pkgs.android-sdk}/share/android-sdk/emulator";
-            }
-            {
-              name = "PATH";
-              prefix = "${pkgs.android-sdk}/share/android-sdk/platform-tools";
-            }
-            {
-              name = "GRADLE_OPTS";
-              prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${pkgs.android-sdk}/share/android-sdk/build-tools/${android.defaultBuildToolsVersion}/aapt2";
-            }
-          ];
-          packages = with pkgs; [
-            # Uncomment these if u decided to want to install android-studio
-            # android-studio
-            android-sdk
-            gradle
-            jdk11
-          ];
-        };
+        devShell = import ./devshell.nix { inherit pkgs; };
       }
     );
 }

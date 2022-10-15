@@ -41,7 +41,7 @@
             patcher-v4
             # The default build tools for react native 0.70
             # If when building the apps needs to add other version of build tools, u can add it too
-            android.defaultBuildToolsXML
+            androidConfig.defaultBuildToolsXML
             build-tools-30-0-3
             cmdline-tools-latest
             emulator

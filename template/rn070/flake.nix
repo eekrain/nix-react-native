@@ -30,11 +30,7 @@
 
         androidConfig = {
           defaultBuildToolsVersion = "31.0.0";
-        };
-      in
-      {
-        packages = {
-          android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
+          sdkPkgs = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
             # Useful packages for building and testing.
             # make sure to add defaultBuildToolsVersion
             build-tools-31-0-0
@@ -51,6 +47,11 @@
             # system-images-android-30-google-apis-x86
             # system-images-android-30-google-apis-playstore-x86
           ]);
+        };
+      in
+      {
+        packages = {
+          android-sdk = androidConfig.sdkPkgs;
 
           # If u need android-studio, u can choose one of these channels
           # Be sure to add it to overlay above
@@ -59,7 +60,7 @@
           # android-studio = pkgs.androidStudioPackages.preview;
           # android-studio = pkgs.androidStudioPackage.canary;
         };
-        devShell = import ./devshell.nix { inherit pkgs; };
+        devShell = import ./devshell.nix { inherit pkgs androidConfig; };
       }
     );
 }

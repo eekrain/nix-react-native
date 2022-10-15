@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, androidConfig }:
 
 with pkgs;
 

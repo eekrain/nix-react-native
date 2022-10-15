@@ -61,7 +61,7 @@
           # android-studio = pkgs.androidStudioPackages.preview;
           # android-studio = pkgs.androidStudioPackage.canary;
         };
-        devShell = devshell.mkShell {
+        devShell = with pkgs; devshell.mkShell {
           name = "android-project";
           motd = ''
             Entered the Android app development environment.

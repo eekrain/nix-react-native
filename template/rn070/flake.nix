@@ -61,7 +61,7 @@
           # android-studio = pkgs.androidStudioPackages.preview;
           # android-studio = pkgs.androidStudioPackage.canary;
         };
-        devShell = with pkgs; devshell.mkShell {
+        devShell = pkgs.devshell.mkShell {
           name = "android-project";
           motd = ''
             Entered the Android app development environment.
@@ -73,23 +73,23 @@
             }
             {
               name = "ANDROID_HOME";
-              value = "${android-sdk}/share/android-sdk";
+              value = "${pkgs.android-sdk}/share/android-sdk";
             }
             {
               name = "ANDROID_SDK_ROOT";
-              value = "${android-sdk}/share/android-sdk";
+              value = "${pkgs.android-sdk}/share/android-sdk";
             }
             {
               name = "PATH";
-              prefix = "${android-sdk}/share/android-sdk/emulator";
+              prefix = "${pkgs.android-sdk}/share/android-sdk/emulator";
             }
             {
               name = "PATH";
-              prefix = "${android-sdk}/share/android-sdk/platform-tools";
+              prefix = "${pkgs.android-sdk}/share/android-sdk/platform-tools";
             }
             {
               name = "GRADLE_OPTS";
-              prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/${android.defaultBuildToolsVersion}/aapt2";
+              prefix = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${pkgs.android-sdk}/share/android-sdk/build-tools/${android.defaultBuildToolsVersion}/aapt2";
             }
           ];
           packages = [

@@ -1,13 +1,18 @@
 {
-  description = "nix-react-native";
+  description = "A nix template for setting up development environment required to develop react native apps using nix.";
 
-  # To update all inputs:
-  # inputs.flake-utils.url = "github:numtide/flake-utils";
+  outputs = { self }: {
+    templates = {
+      rn070 = {
+        path = ./template/rn070;
+        description = "Nix template for react native 0.70";
+      };
+      rn068 = {
+        path = ./template/rn070;
+        description = "Nix template for react native 0.70";
+      };
+    };
 
-  outputs = (
-    system
-  ) // {
-    defaultTemplate.path = ./template;
-    defaultTemplate.description = "nix flake new 'github:numtide/devshell'";
+    defaultTemplate = self.templates.rn070;
   };
 }
